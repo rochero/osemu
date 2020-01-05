@@ -615,7 +615,7 @@ class MyButton(QToolButton):
     # 删除
     def deleteMenu(self):
         item = QAction('&删除(D)', self)
-        item.triggered.connect(self.deleteDialog)
+        item.triggered.connect(self.deleteFunction)
         return item
 
     # 文件夹重命名
@@ -651,10 +651,10 @@ class MyButton(QToolButton):
         self.attr.show()
         self.attr.after_close.connect(self.attributeChange)
 
-    # 删除确认对话框
+    """ # 删除确认对话框
     def deleteDialog(self):
         self.dele = deleteConfirmDialog(self)
-        self.dele.show()
+        self.dele.show() """
 
     # 修改磁盘中的数据
     def attributeChange(self, attr: int):
@@ -687,16 +687,23 @@ class MyButton(QToolButton):
 
     # 删除方法
     def deleteFunction(self):
-        if self.info['attribute'] == 8:
-            mydisk.delete_dir(self.info['path'])
-        else:
-            # 不能删除系统文件
-            if self.info['attribute'] & 2 == 0:
-                mydisk.delete_file(self.info['path'])
+        reply = QMessageBox.question(
+                    self,'删除确认','确认删除吗？',
+                    QMessageBox.Yes|QMessageBox.No,QMessageBox.No
+                )
+        if reply == QMessageBox.Yes:
+            if self.info['attribute'] == 8:
+                mydisk.delete_dir(self.info['path'])
             else:
-                self.errorBox('系统文件不能删除！')
-        self.master.refresh()
-        self.master.master.leftTree.refresh()
+            # 不能删除系统文件
+                if self.info['attribute'] & 2 == 0:
+                    mydisk.delete_file(self.info['path'])
+                else:
+                    self.errorBox('系统文件不能删除！')
+            self.master.refresh()
+            self.master.master.leftTree.refresh()
+        else:
+            return 
 
     # 错误提示框
     def errorBox(self, mes: str):
@@ -762,7 +769,7 @@ class AttributeBox(QWidget):
         self.after_close.emit(ans)
         self.close()
 
-class deleteConfirmDialog(QWidget):
+""" class deleteConfirmDialog(QWidget):
     after_close = pyqtSignal(int)
 
     def __init__(self, master: MyButton):
@@ -781,7 +788,7 @@ class deleteConfirmDialog(QWidget):
         ly.addWidget(self.label, 0, 0)
         ly.addWidget(self.confirmButton, 0, 1)
         ly.addWidget(self.cancelButton, 0, 2)
-        self.setLayout(ly)
+        self.setLayout(ly) """
 
 def main():
     app = QApplication(sys.argv)

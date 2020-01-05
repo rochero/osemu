@@ -130,7 +130,7 @@ def __mkdir(path: str, name: str) -> str:
     建立文件夹
     '''
     if len(name.encode()) > 3:
-        return 'name is too long!'
+        return '名称过长!'
     path = disk.format_path(path)
     if disk.create_dir(path + '/' + name):
         return '成功'
@@ -247,7 +247,7 @@ def __delete_file(path: str, file_name: str) -> str:
     '''
     path = disk.format_path(path)
     if not __is_file_name(file_name):
-        return '非法文件名!'
+        return '非法文件名!名称应为3字符内！'
     name, ext = disk.file_name_split(file_name)
     if disk.delete_file(path + '/' + name):
         return '成功!'

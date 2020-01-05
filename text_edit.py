@@ -97,7 +97,7 @@ class TextEdit(QWidget):
             return
 
         if not disk.is_file_name(self.line.text()):
-            self.errorBox('文件名称不当!')
+            self.errorBox('文件名称不当!应为3字符以内')
             return
 
         name, ext = disk.file_name_split(self.line.text())
