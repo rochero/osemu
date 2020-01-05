@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <source_groups>
+        <source_group_0a42fb32-f0a3-47cf-9b42-e9c61d42cb33>
+            <name>Python Source Group</name>
+            <source_extensions>
+                <source_extension>.py</source_extension>
+            </source_extensions>
+            <source_paths>
+                <source_path>main_window.py</source_path>
+                <source_path>__init__.py</source_path>
+                <source_path>CPU.py</source_path>
+                <source_path>CPU_widget.py</source_path>
+                <source_path>design.md</source_path>
+                <source_path>device.py</source_path>
+                <source_path>disk.py</source_path>
+                <source_path>explorer.py</source_path>
+                <source_path>floatlayout.py</source_path>
+                <source_path>memory.py</source_path>
+                <source_path>orders.py</source_path>
+                <source_path>painter.py</source_path>
+                <source_path>task_manger.py</source_path>
+                <source_path>terminal.py</source_path>
+                <source_path>text_edit.py</source_path>
+            </source_paths>
+            <status>enabled</status>
+            <type>Python Source Group</type>
+        </source_group_0a42fb32-f0a3-47cf-9b42-e9c61d42cb33>
+    </source_groups>
+    <version>8</version>
+</config>
